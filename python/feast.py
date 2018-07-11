@@ -1,6 +1,6 @@
-#####################################################
-##  Contributed by Intel Advanced Analitics group  ##
-#####################################################
+#########################################################################
+##  Based on https://github.com/EvgeniDubov/FEAST/tree/python_wrapper  ##
+#########################################################################
 
 import os
 import sys
@@ -12,7 +12,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 
 class feast(BaseEstimator, TransformerMixin):
-    """ Class for CMIM features selection
+    """ Class for FEAST features selection
         based on C implementation in Feature Selection Tools box
         https://github.com/Craigacp/FEAST
 
@@ -42,7 +42,7 @@ class feast(BaseEstimator, TransformerMixin):
             self.libFSToolbox = c.WinDLL('{}/{}/{}'.format(os.path.dirname(__file__), 'lib', 'libFSToolbox.dll'))
         else:
             # OSs other than Linux and Windows are not supported
-            raise NotImplementedError('FeastCMIM is not supported on {} operating system'.format(sys.platform))
+            raise NotImplementedError('Feast is not supported on {} operating system'.format(sys.platform))
 
         self.num_of_features = num_of_features
         self.feature_indexes = None
@@ -52,7 +52,7 @@ class feast(BaseEstimator, TransformerMixin):
 
     def fit(self, data, labels):
         """
-        Fits a defined CMIM filter to a given data set.
+        Fits a defined filter depending of the criterion to a given data set.
         data and labels are expected to be discretized
 
         Parameters
